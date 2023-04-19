@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Cart Detail</title>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <link rel="stylesheet"
+          href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+          integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm"
+          crossorigin="anonymous">
+
+</head>
+<body>
+<!-- ======= CONTENT ======= -->
+    <nav class="navbar navbar-expand-md bg-dark navbar-dark">
+        <!-- Brand -->
+        <a class="navbar-brand" th:href="@{/admin}">Management System</a>
+
+        <!-- Toggler/collapsibe Button -->
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#collapsibleNavbar">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <!-- Navbar links -->
+        <div class="collapse navbar-collapse" id="collapsibleNavbar">
+            <ul class="navbar-nav">
+                <li class="nav-item">
+                    <a class="nav-link" th:href="@{/admin/carts}">Cart Management</a>
+                </li>
+            </ul>
+        </div>
+    </nav>
+    <br>
+    <br>
+    <div class = "container">
+        <div class = "row">
+            <div class ="col-lg-4 container justify-content-center card">
+                <h1 class = "text-center text-danger"> Cart Detail </h1>
+                <div class = "card-body" th:object="${cart}">
+                    <form action="" enctype="multipart/form-data">
+                        <div class ="form-group">
+                            <label> Cart ID: </label>
+                            <p class="text-success" th:text="${cart.id}"/>
+                        </div>
+
+                        <div class ="form-group">
+                            <label> User ID: </label>
+                            <p class="text-success" th:text="${cart.id_user}"/>
+                        </div>
+
+                        <div class ="form-group">
+                            <label> Day Create: </label>
+                            <p class="text-success" th:text="${cart.dateCreate}"></p>
+                        </div>
+
+                        <div class ="form-group">
+                            <label> Total: </label>
+                            <p class="text-success" th:text="${cart.total}"></p>
+                        </div>
+
+                    </form>
+                </div>
+            </div>
+
+            <div class="col-lg-8">
+                <table class = "table table-striped table-bordered">
+                    <thead class = "table-dark">
+                    <tr>
+                        <th> ID Product </th>
+                        <th> Name </th>
+                        <th> Quantity </th>
+                        <th> Price </th>
+                        <th> Sum Price </th>
+                    </tr>
+                    </thead>
+
+                    <tbody>
+                    <tr th:each = "cartDetail : ${cartDetails}">
+                        <td th:text="${cartDetail.id_product}"></td>
+                        <td th:text="${cartDetail.name_product}"></td>
+                        <td th:text="${cartDetail.quantity}"></td>
+                        <td th:text="${cartDetail.price}"></td>
+                        <td th:text="${cartDetail.sum_price}"></td>
+                    </tr>
+                    </tbody>
+                </table>
+
+            </div>
+        </div>
+    </div>
+</body>
+</html>
